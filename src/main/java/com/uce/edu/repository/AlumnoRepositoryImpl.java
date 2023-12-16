@@ -2,41 +2,42 @@ package com.uce.edu.repository;
 
 import org.springframework.stereotype.Repository;
 
-import com.uce.edu.repository.modelo.Estudiante;
+import com.uce.edu.repository.modelo.Alumno;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 @Repository
 @Transactional
-public class EstudianteRepositoryImpl implements IEstudianteRepository{
+public class AlumnoRepositoryImpl implements IAlumnoRepository {
 
 	@PersistenceContext
 	private EntityManager entityManager;
 	
 	@Override
-	public Estudiante seleccionar(Integer id) {
+	public Alumno seleccionar(Integer id) {
 		// TODO Auto-generated method stub
-		return this.entityManager.find(Estudiante.class, id);
+		return this.entityManager.find(Alumno.class, id);
 	}
 
 	@Override
-	public void insertar(Estudiante estudiante) {
+	public void insertar(Alumno alumno) {
 		// TODO Auto-generated method stub
-		this.entityManager.persist(estudiante);
+		this.entityManager.persist(alumno);
 	}
 
 	@Override
-	public void actualizar(Estudiante estudiante) {
+	public void actualizar(Alumno alumno) {
 		// TODO Auto-generated method stub
-		this.entityManager.merge(estudiante);
+		this.entityManager.merge(alumno);
 	}
 
 	@Override
 	public void eliminar(Integer id) {
 		// TODO Auto-generated method stub
-		Estudiante estu = this.seleccionar(id);
-		this.entityManager.remove(estu);
+		Alumno alum = this.seleccionar(id);
+		this.entityManager.remove(alum);
+		
 	}
 
 }

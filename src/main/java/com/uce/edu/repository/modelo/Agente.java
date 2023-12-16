@@ -10,30 +10,29 @@ import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
-@Table(name = "estudiante")
 @Entity
-public class Estudiante {
+@Table(name = "agente")
+public class Agente {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "generador")
-	@SequenceGenerator(name = "generador", sequenceName = "seq_estudiante", allocationSize = 1)
-	
-	@Column(name = "estu_id")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_agente")
+	@SequenceGenerator(name = "seq_agente", sequenceName = "seq_agente", allocationSize = 1)
+	@Column(name = "agen_id")
 	private Integer id;
 
-	@Column(name = "estu_nombre")
+	@Column(name = "agen_nombre")
 	private String nombre;
 
-	@Column(name = "estu_apellido")
+	@Column(name = "agen_apellido")
 	private String apellido;
 
-	@Column(name = "estu_cedula")
-	private String cedula;
-
-	@Column(name = "estu_fecha_nacimiento")
+	@Column(name = "agen_fecha_nacimiento")
 	private LocalDateTime fechaNacimiento;
 
-	//set y get
+	@Column(name = "agen_genero")
+	private String genero;
+
+	// set y get
 	public Integer getId() {
 		return id;
 	}
@@ -58,14 +57,6 @@ public class Estudiante {
 		this.apellido = apellido;
 	}
 
-	public String getCedula() {
-		return cedula;
-	}
-
-	public void setCedula(String cedula) {
-		this.cedula = cedula;
-	}
-
 	public LocalDateTime getFechaNacimiento() {
 		return fechaNacimiento;
 	}
@@ -74,11 +65,12 @@ public class Estudiante {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
-	@Override
-	public String toString() {
-		return "Estudiante [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", cedula=" + cedula
-				+ ", fechaNacimiento=" + fechaNacimiento + "]";
+	public String getGenero() {
+		return genero;
 	}
-	
+
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
 
 }

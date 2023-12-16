@@ -12,19 +12,16 @@ import jakarta.persistence.Table;
 @Table(name = "alumno")
 public class Alumno {
 
-	
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_alumno")
 	@SequenceGenerator(name = "seq_alumno", sequenceName = "seq_alumno", allocationSize = 1)
-	
 	@Column(name = "alum_id")
 	private Integer id;
 
 	@Column(name = "alum_nombre")
 	private String nombre;
 
-	//set y get
+	// set y get
 	public Integer getId() {
 		return id;
 	}
@@ -40,7 +37,11 @@ public class Alumno {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Alumno [id=" + id + ", nombre=" + nombre + "]";
+	}
 	
 
 }
