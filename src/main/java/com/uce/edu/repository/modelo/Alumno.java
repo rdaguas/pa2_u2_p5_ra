@@ -21,7 +21,7 @@ public class Alumno {
 	@Column(name = "alum_nombre")
 	private String nombre;
 
-	// set y get
+	// Set y Get
 	public Integer getId() {
 		return id;
 	}

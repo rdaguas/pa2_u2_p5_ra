@@ -20,7 +20,7 @@ public class Empleado {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_empleado")
-	@SequenceGenerator(name = "seq_empleadoos", sequenceName = "seq_empleado", allocationSize = 1)
+	@SequenceGenerator(name = "seq_empleado", sequenceName = "seq_empleado", allocationSize = 1)
 	@Column(name = "empl_id")
 	private Integer id;
 
@@ -30,7 +30,7 @@ public class Empleado {
 	@Column(name = "empl_fecha_ingreso")
 	private LocalDateTime fechaIngreso;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "empl_id_ciudadano")
 	private Ciudadano ciudadano;
 
@@ -66,5 +66,11 @@ public class Empleado {
 	public void setCiudadano(Ciudadano ciudadano) {
 		this.ciudadano = ciudadano;
 	}
+
+	@Override
+	public String toString() {
+		return "Empleado [id=" + id + ", salario=" + salario + ", fechaIngreso=" + fechaIngreso + "]";
+	}
+	
 
 }

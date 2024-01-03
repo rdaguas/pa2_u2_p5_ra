@@ -1,26 +1,23 @@
 package com.uce.edu;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.repository.modelo.Ciudadano;
-import com.uce.edu.repository.modelo.Empleado;
-import com.uce.edu.service.ICiudadanoService;
-import com.uce.edu.service.IEmpleadoService;
+import com.uce.edu.repository.modelo.Habitacion;
+import com.uce.edu.repository.modelo.Hotel;
+import com.uce.edu.service.IHotelService;
 
 @SpringBootApplication
 public class Pa2U2P5RaApplication implements CommandLineRunner {
 
 	@Autowired
-	private ICiudadanoService iCiudadanoService;
+	private IHotelService iHotelService;
 
-	@Autowired
-	private IEmpleadoService iEmpleadoService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Pa2U2P5RaApplication.class, args);
@@ -30,25 +27,26 @@ public class Pa2U2P5RaApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 
-		// Ciudadano
-		Ciudadano ciud = new Ciudadano();
-		ciud.setNombre("Roberto");
-		ciud.setApellido("Aguas");
-		//this.iCiudadanoService.guardar(ciud);
+		Hotel hote = new Hotel();
+		hote.setNombre("Marriot");
+		hote.setDireccion("Av.Colon");
+		//hote.setHabitaciones(null);
 		
-		Ciudadano ciud1 = this.iCiudadanoService.buscar(2);
-		System.out.println(ciud1);
+		Habitacion h1 = new Habitacion();
+		h1.setClase("Economica");
+		h1.setNumero("A1");
+		h1.setHotel(hote);
 		
+		Habitacion h2 = new Habitacion();
+		h2.setClase("VIP");
+		h2.setNumero("A2");
+		h2.setHotel(hote);
 		
-		// Empleado
-		Empleado empl = new Empleado();
-		empl.setSalario(new BigDecimal(200));
-		empl.setFechaIngreso(LocalDateTime.now());
-		empl.setCiudadano(ciud1);
-		this.iEmpleadoService.guardar(empl);
-		
-//		ciud.setEmpleado(empl);
-//		empl.setCiudadano(ciud);
+		List<Habitacion> habitaciones = new ArrayList<>();
+		habitaciones.add(h1);
+		habitaciones.add(h2);
+		hote.setHabitaciones(habitaciones);
+		this.iHotelService.guardar(hote);
 	}
 
 }
