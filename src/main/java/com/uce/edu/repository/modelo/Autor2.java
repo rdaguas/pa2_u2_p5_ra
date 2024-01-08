@@ -1,7 +1,5 @@
 package com.uce.edu.repository.modelo;
 
-import java.util.List;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,7 +25,7 @@ public class Autor2 {
 	@Column(name = "auto_nacionalidad")
 	private String nacionalidad;
 
-	private List<AutorLibro> autoresLibros;
+	//private List<AutorLibro> autoresLibros;
 
 	
 	

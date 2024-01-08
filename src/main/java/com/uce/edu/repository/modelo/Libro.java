@@ -70,6 +70,11 @@ public class Libro {
 	public void setFechaPublicacion(LocalDateTime fechaPublicacion) {
 		this.fechaPublicacion = fechaPublicacion;
 	}
+
+	@Override
+	public String toString() {
+		return "Libro [id=" + id + ", titulo=" + titulo + ", fechaPublicacion=" + fechaPublicacion + "]";
+	}
 	
 	
 	

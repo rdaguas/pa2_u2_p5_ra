@@ -1,7 +1,6 @@
 package com.uce.edu.repository.modelo;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,7 +27,7 @@ public class Libro2 {
 	private LocalDateTime fechaPublicacion;
 
 	
-	private List<AutorLibro> autorLibros;
+	//private List<AutorLibro> autorLibros;
 	
 	//set y get
 	public Integer getId() {
