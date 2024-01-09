@@ -75,7 +75,9 @@ public class Libro {
 	public String toString() {
 		return "Libro [id=" + id + ", titulo=" + titulo + ", fechaPublicacion=" + fechaPublicacion + "]";
 	}
-	
+
+
+
 	
 	
 	

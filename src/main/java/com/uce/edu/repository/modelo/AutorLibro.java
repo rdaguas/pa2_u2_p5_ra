@@ -1,10 +1,15 @@
 package com.uce.edu.repository.modelo;
 
+import java.time.LocalDateTime;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -17,7 +22,42 @@ public class AutorLibro {
 	@Column(name = "auli2_id")
 	private Integer id;
 	
-	//private Autor2 autor2;
-	//private Libro2 libro2;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "auli2_id_autor2")
+	private Autor2 autor2;
+	
+	@Column(name = "auli2_fecha")
+	private LocalDateTime fecha;
+	
+	@ManyToOne
+	@JoinColumn(name = "auli2_id_libro2")
+	private Libro2 libro2;
+	
+	//SET Y GET
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public Autor2 getAutor2() {
+		return autor2;
+	}
+	public void setAutor2(Autor2 autor2) {
+		this.autor2 = autor2;
+	}
+	public Libro2 getLibro2() {
+		return libro2;
+	}
+	public void setLibro2(Libro2 libro2) {
+		this.libro2 = libro2;
+	}
+	public LocalDateTime getFecha() {
+		return fecha;
+	}
+	public void setFecha(LocalDateTime fecha) {
+		this.fecha = fecha;
+	}
 
+	
 }

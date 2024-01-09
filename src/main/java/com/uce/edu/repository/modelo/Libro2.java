@@ -1,12 +1,15 @@
 package com.uce.edu.repository.modelo;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -17,17 +20,17 @@ public class Libro2 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_libro2")
 	@SequenceGenerator(name = "seq_libro2", sequenceName = "seq_libro2", allocationSize = 1)
-	@Column(name = "libr_id")
+	@Column(name = "libr2_id")
 	private Integer id;
 	
-	@Column(name = "libr_titulo")
+	@Column(name = "libr2_titulo")
 	private String titulo;
 	
-	@Column(name = "libr_fecha_publicacion")
+	@Column(name = "libr2_fecha_publicacion")
 	private LocalDateTime fechaPublicacion;
 
-	
-	//private List<AutorLibro> autorLibros;
+	@OneToMany(mappedBy = "libro2",cascade = CascadeType.ALL)
+	private List<AutorLibro> autoresLibros;
 	
 	//set y get
 	public Integer getId() {
@@ -52,6 +55,14 @@ public class Libro2 {
 
 	public void setFechaPublicacion(LocalDateTime fechaPublicacion) {
 		this.fechaPublicacion = fechaPublicacion;
+	}
+
+	public List<AutorLibro> getAutoresLibros() {
+		return autoresLibros;
+	}
+
+	public void setAutoresLibros(List<AutorLibro> autoresLibros) {
+		this.autoresLibros = autoresLibros;
 	}
 	
 	
