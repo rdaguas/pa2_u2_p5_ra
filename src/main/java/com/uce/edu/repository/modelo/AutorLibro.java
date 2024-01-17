@@ -22,12 +22,12 @@ public class AutorLibro {
 	@Column(name = "auli2_id")
 	private Integer id;
 	
+	@Column(name = "auli2_fecha")
+	private LocalDateTime fecha;
+	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "auli2_id_autor2")
 	private Autor2 autor2;
-	
-	@Column(name = "auli2_fecha")
-	private LocalDateTime fecha;
 	
 	@ManyToOne
 	@JoinColumn(name = "auli2_id_libro2")

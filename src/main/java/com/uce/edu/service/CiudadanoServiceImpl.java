@@ -1,15 +1,18 @@
 package com.uce.edu.service;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uce.edu.repository.ICiudadanoRepository;
 import com.uce.edu.repository.modelo.Ciudadano;
+import com.uce.edu.repository.modelo.Empleado;
 @Service
 public class CiudadanoServiceImpl implements ICiudadanoService {
 
 	@Autowired
 	private ICiudadanoRepository iCiudadanoRepository;
+
 	
 	@Override
 	public void guardar(Ciudadano ciudadano) {
@@ -33,6 +36,18 @@ public class CiudadanoServiceImpl implements ICiudadanoService {
 	public void eliminar(Integer id) {
 		// TODO Auto-generated method stub
 		this.iCiudadanoRepository.eliminar(id);
+	}
+
+	@Override
+	public Empleado buscarPorCedula(String cedula) {
+		// TODO Auto-generated method stub
+		return this.iCiudadanoRepository.seleccionarPorCedula(cedula);
+	}
+
+	@Override
+	public Ciudadano buscarPorCedulaCiu(String cedula) {
+		// TODO Auto-generated method stub
+		return this.iCiudadanoRepository.seleccionarPorCedulaCiu(cedula);
 	}
 
 }
