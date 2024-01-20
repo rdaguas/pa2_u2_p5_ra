@@ -1,5 +1,8 @@
 package com.uce.edu.service;
 
+import java.math.BigDecimal;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +36,12 @@ public class EmpleadoServiceImpl implements IEmpleadoService{
 	public void eliminar(Integer id) {
 		// TODO Auto-generated method stub
 		this.iEmpleadoRepository.eliminar(id);
+	}
+
+	@Override
+	public List<Empleado> buscarPorSalario(BigDecimal salario) {
+		// TODO Auto-generated method stub
+		return this.iEmpleadoRepository.seleccionarPorSalario(salario);
 	}
 
 }

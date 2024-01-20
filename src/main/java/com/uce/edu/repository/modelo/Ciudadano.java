@@ -1,5 +1,8 @@
 package com.uce.edu.repository.modelo;
 
+import java.time.LocalDate;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,10 +31,18 @@ public class Ciudadano {
 	@Column(name = "ciud_cedula")
 	private String cedula;
 	
-	@OneToOne(mappedBy = "ciudadano")
+	@Column(name = "ciud_edad")
+	private Integer edad;
+	
+	@Column(name = "ciud_genero")
+	private String genero;
+	
+	@Column(name = "ciud_fecha_nacimiento")
+	private LocalDate fechaNacimiento;
+	
+	@OneToOne(mappedBy = "ciudadano", cascade = CascadeType.ALL)
 	private Empleado empleado;
 
-	//set y get
 	public Integer getId() {
 		return id;
 	}
@@ -64,6 +75,30 @@ public class Ciudadano {
 		this.cedula = cedula;
 	}
 
+	public Integer getEdad() {
+		return edad;
+	}
+
+	public void setEdad(Integer edad) {
+		this.edad = edad;
+	}
+
+	public String getGenero() {
+		return genero;
+	}
+
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
+
+	public LocalDate getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+
+	public void setFechaNacimiento(LocalDate fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
 	public Empleado getEmpleado() {
 		return empleado;
 	}
@@ -74,9 +109,12 @@ public class Ciudadano {
 
 	@Override
 	public String toString() {
-		return "Ciudadano [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", cedula=" + cedula + "]";
+		return "Ciudadano [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", cedula=" + cedula
+				+ ", edad=" + edad + ", genero=" + genero + ", fechaNacimiento=" + fechaNacimiento + "]";
 	}
 
+	
+	
 
 	
 	

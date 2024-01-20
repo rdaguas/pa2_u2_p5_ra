@@ -1,6 +1,7 @@
 package com.uce.edu;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import com.uce.edu.repository.modelo.Ciudadano;
 import com.uce.edu.repository.modelo.Empleado;
 import com.uce.edu.service.ICiudadanoService;
 import com.uce.edu.service.IEmpleadoService;
-import com.uce.edu.service.IEstudianteService;
+import com.uce.edu.service.ILibroService;
 
 @SpringBootApplication
 public class Pa2U2P5RaApplication implements CommandLineRunner {
@@ -31,6 +32,9 @@ public class Pa2U2P5RaApplication implements CommandLineRunner {
 	
 	@Autowired
 	private IEmpleadoService iEmpleadoService;
+	
+	@Autowired
+	private ILibroService iLibroService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Pa2U2P5RaApplication.class, args);
@@ -41,24 +45,56 @@ public class Pa2U2P5RaApplication implements CommandLineRunner {
 		// TODO Auto-generated method stub
 		
 		Ciudadano ciu = new Ciudadano();
-		ciu.setApellido("Aguas");
-		ciu.setCedula("1724");
-		ciu.setNombre("Roberto");
+		ciu.setApellido("Bolañ");
+		ciu.setCedula("1234567");
+		ciu.setNombre("Patricio");
+		ciu.setEdad(47);
+		ciu.setFechaNacimiento(LocalDate.of(1977, 1, 20));
+		ciu.setGenero("Masculino");
 		
+		Empleado empl = new Empleado();
+		empl.setSalario(new BigDecimal(3000));
+		empl.setFechaIngreso(LocalDateTime.now());
+		ciu.setEmpleado(empl);
+		empl.setCiudadano(ciu);
 		//this.iCiudadanoService.guardar(ciu);
 		
-		Empleado empl = this.iCiudadanoService.buscarPorCedula("1724");
-		System.out.println(empl);
+//		Empleado empl = this.iCiudadanoService.buscarPorCedula("17243");
+//		System.out.println(empl);
 		
-		Empleado empl1 = new Empleado();
-		empl1.setFechaIngreso(LocalDateTime.now());
-		empl1.setSalario(new BigDecimal(200));
-		//empl1.setCiudadano(ciu);
-//		ciu.setEmpleado(empl1);
-//		this.iEmpleadoService.guardar(empl1);
+		//buscar 5 por TypedQuery
+		System.out.println("-----------------------------------------TYPED QUERY---------------------------------------");
+		Ciudadano ciud1 = this.iCiudadanoService.buscarPorNombre("Rober");
+		System.out.println(ciud1);
 		
-//		Ciudadano ciu2 = this.iCiudadanoService.buscarPorCedulaCiu("1724");
-//		System.out.println(ciu2);
+		Ciudadano ciud2 = this.iCiudadanoService.buscarPorApellido("Cayambe");
+		System.out.println(ciud2);
+	
+		this.iCiudadanoService.buscarPorEdad(22).stream().forEach(System.out::println);
+		
+		Ciudadano ciud4 = this.iCiudadanoService.buscarPorFechaNacimiento(LocalDate.of(2001, 3, 24));
+		System.out.println(ciud4);
+		
+		Ciudadano ciud5 = this.iCiudadanoService.buscarPorGenero("Femenino");
+		System.out.println(ciud5);
+		
+		
+		//buscar 5 por NATIVE QUERY
+		System.out.println("-----------------------------------------NATIVE QUERY---------------------------------------");
+
+		this.iCiudadanoService.buscarPorFechaNaci(LocalDate.of(2000, 1, 1)).stream().forEach(System.out::println);
+
+		Ciudadano ciu2 = this.iCiudadanoService.buscarPorCedulaCiu("17243");
+		System.out.println(ciu2);
+		
+		Ciudadano ciu3 = this.iCiudadanoService.buscarPorNombreNative("Edison");
+		System.out.println(ciu3);
+		
+		Ciudadano ciu4 = this.iCiudadanoService.buscarPorApellidonative("Bolañ");
+		System.out.println(ciu4);
+		
+		//this.iEmpleadoService.buscarPorSalario(new BigDecimal(700)).stream().forEach(System.out::println);
+		
 		
 		
 		

@@ -1,6 +1,9 @@
 package com.uce.edu.service;
 
 
+import java.time.LocalDate;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,5 +52,55 @@ public class CiudadanoServiceImpl implements ICiudadanoService {
 		// TODO Auto-generated method stub
 		return this.iCiudadanoRepository.seleccionarPorCedulaCiu(cedula);
 	}
+
+	@Override
+	public Ciudadano buscarPorNombre(String nombre) {
+		// TODO Auto-generated method stub
+		return this.iCiudadanoRepository.seleccionarPorNombre(nombre);
+	}
+
+	@Override
+	public Ciudadano buscarPorApellido(String apellido) {
+		// TODO Auto-generated method stub
+		return this.iCiudadanoRepository.seleccionarPorApellido(apellido);
+	}
+
+	@Override
+	public List<Ciudadano>buscarPorEdad(Integer edad) {
+		// TODO Auto-generated method stub
+		return this.iCiudadanoRepository.seleccionarPorEdad(edad);
+	}
+
+	@Override
+	public Ciudadano buscarPorGenero(String genero) {
+		// TODO Auto-generated method stub
+		return this.iCiudadanoRepository.seleccionarPorGenero(genero);
+	}
+
+	@Override
+	public Ciudadano buscarPorFechaNacimiento(LocalDate fechaNacimiento) {
+		// TODO Auto-generated method stub
+		return this.iCiudadanoRepository.seleccionarPorFechaNacimiento(fechaNacimiento);
+	}
+
+	@Override
+	public List<Ciudadano> buscarPorFechaNaci(LocalDate fechaNacimiento) {
+		// TODO Auto-generated method stub
+		return this.iCiudadanoRepository.seleccionarPorFechaNaci(fechaNacimiento);
+	}
+
+	@Override
+	public Ciudadano buscarPorNombreNative(String nombre) {
+		// TODO Auto-generated method stub
+		return this.iCiudadanoRepository.seleccionarPorNombreNative(nombre);
+	}
+
+	@Override
+	public Ciudadano buscarPorApellidonative(String apellido) {
+		// TODO Auto-generated method stub
+		return this.iCiudadanoRepository.seleccionarPorApellidonative(apellido);
+	}
+
+
 
 }
