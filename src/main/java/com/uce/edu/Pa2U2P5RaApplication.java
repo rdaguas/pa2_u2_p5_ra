@@ -1,5 +1,7 @@
 package com.uce.edu;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -38,25 +40,22 @@ public class Pa2U2P5RaApplication implements CommandLineRunner {
 
 		//CRITERIA API QUERY
 		
-//		Ciudadano ciu = this.iCiudadanoService.buscarPorApelli("Waters");
-//		System.out.println(ciu);
+		Ciudadano ciu1 = this.iCiudadanoService.buscarPorApelli("Waters");
+		System.out.println(ciu1);
 		
 		
-		Ciudadano ciu2 = this.iCiudadanoService.buscarPorNombreApellidoCedulaCriteria("Rober", "Waters", "172434");
+		Ciudadano ciu2 = this.iCiudadanoService.buscarPorCriteriaAndOr("Rober", "Waters", "172434");
 		System.out.println(ciu2);
 		
-		Ciudadano ciu3 = this.iCiudadanoService.buscarPorNombreApellidoCedulaCriteria("Rober", "Waters", "05");
+		Ciudadano ciu3 = this.iCiudadanoService.buscarPorNombreCriteria("Jose");
 		System.out.println(ciu3);
 		
-		Ciudadano ciu4 = this.iCiudadanoService.buscarPorNombreApellidoCedulaCriteria("Rober", "Waters", "051234");
-		System.out.println(ciu4);
+		this.iCiudadanoService.buscarPorEdadCriteria(22).forEach(System.out::println);
 		
-		System.out.println("CRITERIA API QUERY AND --- OR");
-		Ciudadano ciu5 = this.iCiudadanoService.buscarPorCriteriaAndOr("Rober", "Waters", "172434");
-		System.out.println(ciu5);
-		
-		Ciudadano ciu6 = this.iCiudadanoService.buscarPorCriteriaAndOr("Rober", "Waters", "052434");
-		System.out.println(ciu6);
+		this.iCiudadanoService.buscarPorGeneroCriteria("F", 24).stream().forEach(System.out::println);
+		this.iCiudadanoService.buscarPorGeneroCriteria("M", 24).stream().forEach(System.out::println);
+
+	
 		
 	}
 

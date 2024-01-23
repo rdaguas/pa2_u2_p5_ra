@@ -119,6 +119,24 @@ public class CiudadanoServiceImpl implements ICiudadanoService {
 		return this.iCiudadanoRepository.seleccionarPorCriteriaAndOr(nombre, apellido, cedula);
 	}
 
+	@Override
+	public Ciudadano buscarPorNombreCriteria(String nombre) {
+		// TODO Auto-generated method stub
+		return this.iCiudadanoRepository.seleccionarPorNombreCriteria(nombre);
+	}
+
+	@Override
+	public List<Ciudadano> buscarPorEdadCriteria(Integer edad) {
+		// TODO Auto-generated method stub
+		return this.iCiudadanoRepository.seleccionarPorEdadCriteria(edad);
+	}
+
+	@Override
+	public List<Ciudadano> buscarPorGeneroCriteria(String genero, Integer edad) {
+		// TODO Auto-generated method stub
+		return this.iCiudadanoRepository.seleccionarPorGeneroCriteria(genero, edad);
+	}
+
 
 
 }

@@ -219,19 +219,18 @@ public class CiudadanoRepositoryImpl implements ICiudadanoRepository {
 		// 2.2 Construimos las condiones del WHERE
 		Predicate condicionTotal = null;
 
-		//c.nombre =:nombre
+		// c.nombre =:nombre
 		Predicate condicionNombre = myCriteriaBuilder.equal(myFrom.get("nombre"), nombre);
-		//c.apellido =:apellido
+		// c.apellido =:apellido
 		Predicate condicionApellido = myCriteriaBuilder.equal(myFrom.get("apellido"), apellido);
-		
+
 		if (cedula.startsWith("17")) {
-			//c.nombre =:nombre or c.apellido=:apellido
+			// c.nombre =:nombre or c.apellido=:apellido
 			condicionTotal = myCriteriaBuilder.or(condicionNombre, condicionApellido);
 		} else if (cedula.startsWith("05")) {
-			//c.nombre =:nombre and c.apellido=:apellido
-			condicionTotal = myCriteriaBuilder.and(condicionNombre,condicionApellido);
-
-		} 
+			// c.nombre =:nombre and c.apellido=:apellido
+			condicionTotal = myCriteriaBuilder.and(condicionNombre, condicionApellido);
+		}
 
 		// 3. SQL Final
 		myCriteriaQuery.select(myFrom).where(condicionTotal);
@@ -240,6 +239,99 @@ public class CiudadanoRepositoryImpl implements ICiudadanoRepository {
 		TypedQuery<Ciudadano> myTypedQuery = this.entityManager.createQuery(myCriteriaQuery);
 		// 5.
 		return myTypedQuery.getSingleResult();
+	}
+
+	@Override
+	public Ciudadano seleccionarPorNombreCriteria(String nombre) {
+		// SELECT c FROM Ciudadano c WHERE c.apellido =: variable
+		// 0. Creamos una instancia de la interfaz CriteriaBuilder a partir de un EM
+		CriteriaBuilder myCBuilder = this.entityManager.getCriteriaBuilder();
+
+		// 1. Determinamos el tipo de retorno que va ha tener mi Consulta.
+		CriteriaQuery<Ciudadano> myCriteriaQuery = myCBuilder.createQuery(Ciudadano.class);
+
+		// 2. Construir el SQL
+		// 2.1. Determinamos el from (root)
+		// Nota: No necesariamente el FROM es igual al tipo de retorno.
+		// SELECT c.empleado FROM Ciudadano c WHERE c.empleado.nombre =:dato
+		Root<Ciudadano> myFrom = myCriteriaQuery.from(Ciudadano.class);// Es el (FROM) Ciudadano c
+		// 2.2. Construir las condiciones(WHERE) DE sql
+		// En CRITERIA API QUERY las condiciones se las conoces como PREDICADOS
+
+		// c.apellido=:variable
+		Predicate condicionNombre = myCBuilder.equal(myFrom.get("nombre"), nombre);
+
+		// 3. Construimos el SQL final
+		myCriteriaQuery.select(myFrom).where(condicionNombre);
+		// 4. Ejecutamos la consulta con un TypedQuery
+		TypedQuery<Ciudadano> myTypedQuery = this.entityManager.createQuery(myCriteriaQuery);
+		return myTypedQuery.getSingleResult();
+	}
+
+	@Override
+	public List<Ciudadano> seleccionarPorEdadCriteria(Integer edad) {
+		// TODO Auto-generated method stub
+		// SELECT c FROM Ciudadano c WHERE c.apellido =: variable
+		// 0. Creamos una instancia de la interfaz CriteriaBuilder a partir de un EM
+		CriteriaBuilder myCBuilder = this.entityManager.getCriteriaBuilder();
+
+		// 1. Determinamos el tipo de retorno que va ha tener mi Consulta.
+		CriteriaQuery<Ciudadano> myCriteriaQuery = myCBuilder.createQuery(Ciudadano.class);
+
+		// 2. Construir el SQL
+		// 2.1. Determinamos el from (root)
+		// Nota: No necesariamente el FROM es igual al tipo de retorno.
+		// SELECT c.empleado FROM Ciudadano c WHERE c.empleado.nombre =:dato
+		Root<Ciudadano> myFrom = myCriteriaQuery.from(Ciudadano.class);// Es el (FROM) Ciudadano c
+		// 2.2. Construir las condiciones(WHERE) DE sql
+		// En CRITERIA API QUERY las condiciones se las conoces como PREDICADOS
+
+		// c.apellido=:variable
+		Predicate condicionEdad = myCBuilder.equal(myFrom.get("edad"), edad);
+
+		// 3. Construimos el SQL final
+		myCriteriaQuery.select(myFrom).where(condicionEdad);
+		// 4. Ejecutamos la consulta con un TypedQuery
+		TypedQuery<Ciudadano> myTypedQuery = this.entityManager.createQuery(myCriteriaQuery);
+		return myTypedQuery.getResultList();
+	}
+
+	@Override
+	public List<Ciudadano> seleccionarPorGeneroCriteria(String genero, Integer edad) {
+		// TODO Auto-generated method stub
+		// SELECT c FROM Ciudadano c WHERE c.apellido =: variable
+		// 0. Creamos una instancia de la interfaz CriteriaBuilder a partir de un EM
+		CriteriaBuilder myCBuilder = this.entityManager.getCriteriaBuilder();
+
+		// 1. Determinamos el tipo de retorno que va ha tener mi Consulta.
+		CriteriaQuery<Ciudadano> myCriteriaQuery = myCBuilder.createQuery(Ciudadano.class);
+
+		// 2. Construir el SQL
+		// 2.1. Determinamos el from (root)
+		// Nota: No necesariamente el FROM es igual al tipo de retorno.
+		// SELECT c.empleado FROM Ciudadano c WHERE c.empleado.nombre =:dato
+		Root<Ciudadano> myFrom = myCriteriaQuery.from(Ciudadano.class);// Es el (FROM) Ciudadano c
+		// 2.2 Construimos las condiones del WHERE
+		Predicate condicionTotal = null;
+
+		// c.nombre =:nombre
+		Predicate condicion1 = myCBuilder.equal(myFrom.get("genero"), genero);
+		// c.apellido =:apellido
+		Predicate condicion2 = myCBuilder.equal(myFrom.get("edad"), edad);
+
+		if (genero.startsWith("M")) {
+			// c.nombre =:nombre or c.apellido=:apellido
+			condicionTotal = myCBuilder.or(condicion1, condicion2);
+		} else if (genero.startsWith("F")) {
+			// c.nombre =:nombre and c.apellido=:apellido
+			condicionTotal = myCBuilder.and(condicion1, condicion2);
+
+		}
+		// 3. SQL Final
+		myCriteriaQuery.select(myFrom).where(condicionTotal);
+		// 4. Ejecutamos la consulta con un TypedQuery
+		TypedQuery<Ciudadano> myTypedQuery = this.entityManager.createQuery(myCriteriaQuery);
+		return myTypedQuery.getResultList();
 	}
 
 }

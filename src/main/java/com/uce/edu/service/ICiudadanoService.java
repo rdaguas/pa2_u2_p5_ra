@@ -31,6 +31,10 @@ public interface ICiudadanoService {
 	public Ciudadano buscarPorNombreApellidoCedulaCriteria(String nombre, String apellido, String cedula);
 	
 	public Ciudadano buscarPorCriteriaAndOr(String nombre, String apellido, String cedula);
+	
+	public Ciudadano buscarPorNombreCriteria(String nombre);
+	public List<Ciudadano> buscarPorEdadCriteria(Integer edad);
+	public List<Ciudadano> buscarPorGeneroCriteria(String genero, Integer edad);
 
 
 
