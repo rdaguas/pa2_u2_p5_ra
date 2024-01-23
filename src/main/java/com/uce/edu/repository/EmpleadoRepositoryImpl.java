@@ -47,7 +47,7 @@ public class EmpleadoRepositoryImpl implements IEmpleadoRepository{
 	@Override
 	public List<Empleado> seleccionarPorSalario(BigDecimal salario) {
 		// TODO Auto-generated method stub
-		Query myQuery = this.entityManager.createNativeQuery("SELECT * FROM empleado e WHERE e.empl_salario >=:salario", Ciudadano.class);
+		Query myQuery = this.entityManager.createNativeQuery("SELECT * FROM empleado e WHERE e.empl_salario >:salario", Ciudadano.class);
 		myQuery.setParameter("salario", salario);
 		return myQuery.getResultList();
 	}

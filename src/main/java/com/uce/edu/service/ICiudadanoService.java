@@ -25,6 +25,14 @@ public interface ICiudadanoService {
 	public List<Ciudadano> buscarPorFechaNaci(LocalDate fechaNacimiento);
 	public Ciudadano buscarPorNombreNative(String nombre);
 	public Ciudadano buscarPorApellidonative(String apellido);
+	
+	public Ciudadano buscarPorApelli(String apellido);
+
+	public Ciudadano buscarPorNombreApellidoCedulaCriteria(String nombre, String apellido, String cedula);
+	
+	public Ciudadano buscarPorCriteriaAndOr(String nombre, String apellido, String cedula);
+
+
 
 
 }
